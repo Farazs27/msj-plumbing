@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import ContactForm from '@/components/ContactForm';
 
@@ -11,6 +12,15 @@ export default function ContactPage() {
   return (
     <>
       <section className="page-hero">
+        <div className="page-hero-bg">
+          <Image
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=85"
+            alt="Copper pipework"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
         <div className="page-hero-inner">
           <div className="breadcrumb">
             <Link href="/">Home</Link>
@@ -48,6 +58,20 @@ export default function ContactPage() {
           <div className="contact-grid">
             {/* INFO SIDE */}
             <Reveal className="contact-info">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm mb-8">
+                <Image
+                  src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200&q=85"
+                  alt="Workshop with tools and copper fittings"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 40vw"
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink/30 pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between font-mono text-[10px] uppercase tracking-[0.15em] text-cream">
+                  <span>The workshop</span>
+                  <span>Yarmouth Rd</span>
+                </div>
+              </div>
               <div className="contact-block">
                 <h4>Phone</h4>
                 <a href="tel:01202080151">01202 080 151</a>

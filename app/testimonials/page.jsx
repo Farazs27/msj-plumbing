@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import EmergencyBand from '@/components/EmergencyBand';
+import TestimonialMarquee from '@/components/TestimonialMarquee';
 
 export const metadata = {
   title: 'Testimonials — MSJ Plumbing & Drainage Ltd',
@@ -40,7 +42,7 @@ const testimonials = [
   },
   {
     text: 'Found a slow leak under our kitchen floor that three other plumbers had missed. The thermal camera spotted it in twenty minutes. Minimal disruption, proper repair, zero mess.',
-    name: 'Tom &amp; Jo F.',
+    name: 'Tom & Jo F.',
     place: 'Wareham',
     job: 'Under-floor leak detection',
   },
@@ -50,6 +52,15 @@ export default function TestimonialsPage() {
   return (
     <>
       <section className="page-hero">
+        <div className="page-hero-bg">
+          <Image
+            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&q=85"
+            alt="Trusted handshake"
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
         <div className="page-hero-inner">
           <div className="breadcrumb">
             <Link href="/">Home</Link>
@@ -68,73 +79,58 @@ export default function TestimonialsPage() {
       <section className="section section--cream">
         <div className="container">
           <Reveal>
-            <div style={{ borderTop: '1px solid var(--line)', paddingTop: '4rem', maxWidth: '900px' }}>
-              <span className="eyebrow">Featured review</span>
-              <blockquote style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
-                fontWeight: 300,
-                lineHeight: 1.15,
-                letterSpacing: '-0.02em',
-                color: 'var(--ink)',
-                marginTop: '1.5rem',
-                fontStyle: 'italic',
-              }}>
-                &ldquo;Found a slow leak under our kitchen floor that three other plumbers had missed.
-                The thermal camera spotted it in twenty minutes.&rdquo;
-              </blockquote>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                marginTop: '2rem',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '12px',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--ash)',
-              }}>
-                <span style={{ width: '40px', height: '1px', background: 'var(--copper)' }} />
-                <strong style={{ color: 'var(--ink)' }}>Tom &amp; Jo F.</strong>
-                <span>Wareham · Leak detection</span>
+            <div className="grid gap-12 md:grid-cols-[1fr_1fr] items-center" style={{ borderTop: '1px solid var(--line)', paddingTop: '4rem' }}>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+                <Image
+                  src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1200&q=85"
+                  alt="Workshop with copper pipework and tools"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className="absolute bottom-6 left-6 right-6 flex justify-between font-mono text-[11px] uppercase tracking-[0.1em] text-cream">
+                  <span>No. 03 · Workmanship</span>
+                  <span>Dorset</span>
+                </div>
+                <div className="absolute inset-0 ring-1 ring-inset ring-black/10" />
+              </div>
+              <div>
+                <span className="eyebrow">Featured review</span>
+                <blockquote style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
+                  fontWeight: 300,
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.02em',
+                  color: 'var(--ink)',
+                  marginTop: '1.5rem',
+                  fontStyle: 'italic',
+                }}>
+                  &ldquo;Found a slow leak under our kitchen floor that three other plumbers had missed.
+                  The thermal camera spotted it in twenty minutes.&rdquo;
+                </blockquote>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  marginTop: '2rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '12px',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ash)',
+                }}>
+                  <span style={{ width: '40px', height: '1px', background: 'var(--copper)' }} />
+                  <strong style={{ color: 'var(--ink)' }}>Tom & Jo F.</strong>
+                  <span>Wareham · Leak detection</span>
+                </div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ALL REVIEWS */}
-      <section className="section">
-        <div className="container">
-          <Reveal className="section-head">
-            <span className="eyebrow">All reviews</span>
-            <h2>What people <em>say when we leave.</em></h2>
-          </Reveal>
-          <Reveal stagger className="testimonial-grid">
-            {testimonials.map((t, i) => (
-              <div key={i} className="testimonial">
-                <span className="testimonial-quote">&ldquo;</span>
-                <p className="testimonial-text" dangerouslySetInnerHTML={{ __html: t.text }} />
-                <div className="testimonial-meta">
-                  <strong>{t.name}</strong>
-                  <span className="sep" />
-                  <span>{t.place}</span>
-                </div>
-                <div style={{
-                  marginTop: '1rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: 'var(--copper)',
-                }}>
-                  {t.job}
-                </div>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
+      <TestimonialMarquee testimonials={testimonials} />
 
       {/* CTA */}
       <section className="section section--dark">
